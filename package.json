@@ -1,0 +1,32 @@
+{
+  "name": "pg-app",
+  "version": "1.0.0",
+  "description": "node-pg-app",
+  "main": "src/app.js",
+  "scripts": {
+    "dev": "cross-env APP_ENV=dev nodemon src/app.js",
+    "release": "cross-env APP_ENV=release node src/app.js",
+    "prod": "cross-env APP_ENV=prod node src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Msaadjaved/node-pg-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Msaadjaved/node-pg-app/issues"
+  },
+  "homepage": "https://github.com/Msaadjaved/node-pg-app#readme",
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "pg": "^8.18.0"
+  },
+  "devDependencies": {
+    "cross-env": "^10.1.0",
+    "nodemon": "^3.1.14"
+  }
+}
