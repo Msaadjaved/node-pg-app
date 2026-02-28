@@ -3,11 +3,6 @@ name: Update PR Comment
 on:
   pull_request:
     types: [opened, synchronize]
-  workflow_dispatch:
-    inputs:
-      comment_id:
-        description: "Existing comment ID to update (optional)"
-        required: false
 
 permissions:
   pull-requests: write
