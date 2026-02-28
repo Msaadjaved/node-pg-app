@@ -1,0 +1,35 @@
+name: Update PR Comment
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+permissions:
+  pull-requests: write
+  issues: write
+
+jobs:
+  update-comment:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Find Existing Comment
+        uses: peter-evans/find-comment@v3
+        id: find_comment
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: github-actions[bot]
+          body-includes: "<!-- managed-by: update-comment-action -->"
+
+      - name: Create or Update Comment
+        uses: peter-evans/create-or-update-comment@v5
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-id: ${{ steps.find_comment.outputs.comment-id }}  # ✅ empty on first run = creates new
+          body: |
+            ## 🤖 CI Status Report
+            <!-- managed-by: update-comment-action -->
+            **Run:** `${{ github.run_id }}`
+            **Commit:** `${{ github.sha }}`
+            **Status:** ✅ Workflow executed successfully
+          edit-mode: replace
